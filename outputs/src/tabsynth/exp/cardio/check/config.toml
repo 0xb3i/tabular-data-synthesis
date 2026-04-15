@@ -1,16 +1,16 @@
-# Abalone Dataset - Regression Task
-# Predict the age of abalone from physical measurements
+# Cardio Dataset - Binary Classification
+# Cardiovascular disease prediction
 
-parent_dir = "src/tabsynth/exp/abalone/check"
-real_data_path = "src/tabsynth/data/abalone/"
-num_numerical_features = 7
+parent_dir = "src/tabsynth/exp/cardio/check"
+real_data_path = "src/tabsynth/data/cardio/"
+num_numerical_features = 5
 model_type = "mlp"
 seed = 0
 device = "cpu"
 
 [model_params]
-num_classes = 0  # 0 for regression
-is_y_cond = false
+num_classes = 2
+is_y_cond = true
 
 [model_params.rtdl_params]
 d_layers = [256, 256]
@@ -25,7 +25,7 @@ scheduler = "cosine"
 steps = 1000
 lr = 0.001
 weight_decay = 1e-05
-batch_size = 1024
+batch_size = 4096
 
 [train.T]
 seed = 0
@@ -40,8 +40,8 @@ y_policy = "default"
 type = "identity"
 
 [sample]
-num_samples = 2672  # same as train size
-batch_size = 1024
+num_samples = 44800
+batch_size = 10000
 seed = 0
 
 [eval.type]

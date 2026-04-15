@@ -1,16 +1,16 @@
-# Abalone Dataset - Regression Task
-# Predict the age of abalone from physical measurements
+# Churn Dataset - Binary Classification
+# Customer churn prediction
 
-parent_dir = "src/tabsynth/exp/abalone/check"
-real_data_path = "src/tabsynth/data/abalone/"
+parent_dir = "src/tabsynth/exp/churn2/check"
+real_data_path = "src/tabsynth/data/churn2/"
 num_numerical_features = 7
 model_type = "mlp"
 seed = 0
 device = "cpu"
 
 [model_params]
-num_classes = 0  # 0 for regression
-is_y_cond = false
+num_classes = 2
+is_y_cond = true
 
 [model_params.rtdl_params]
 d_layers = [256, 256]
@@ -40,7 +40,7 @@ y_policy = "default"
 type = "identity"
 
 [sample]
-num_samples = 2672  # same as train size
+num_samples = 6400
 batch_size = 1024
 seed = 0
 

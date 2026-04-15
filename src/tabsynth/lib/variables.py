@@ -26,6 +26,6 @@ CWD = os.getcwd()
 # however, this would require addind  PROJEKT_FOLDER/src to the PYTHONPATH in the azure script.
 
 if RUNS_IN_CLOUD:
-    ROOT_DIR = CWD
+    ROOT_DIR = Path(CWD)
 else:
     ROOT_DIR = Path("src")

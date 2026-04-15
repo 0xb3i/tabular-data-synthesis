@@ -1,0 +1,20 @@
+{
+    "name": "Cardio",
+    "id": "cardio--default",
+    "task_type": "binclass",
+    "n_num_features": 5,
+    "n_cat_features": 6,
+    "test_size": 11200,
+    "train_size": 44800,
+    "val_size": 14000,
+    "dataset_config": {
+        "cat_columns": ["gender", "cholesterol", "gluc", "smoke", "alco", "active"],
+        "non_cat_columns": [],
+        "log_columns": [],
+        "general_columns": [],
+        "mixed_columns": {},
+        "int_columns": ["age", "height", "weight", "ap_hi", "ap_lo"],
+        "problem_type": "binclass",
+        "target_column": "cardio"
+    }
+}

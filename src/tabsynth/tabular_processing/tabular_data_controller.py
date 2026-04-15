@@ -157,7 +157,9 @@ class TabularDataController:
         """
         x_cat, x_num, y =  None, None, None
         for split in splits:
-            x_cat = np.concatenate([x_cat, self.x_cat[split]]) if x_cat is not None else self.x_cat[split]
+            # Skip empty/zero-dimensional arrays for x_cat
+            if self.x_cat[split] is not None and self.x_cat[split].ndim > 0 and self.x_cat[split].size > 0:
+                x_cat = np.concatenate([x_cat, self.x_cat[split]]) if x_cat is not None else self.x_cat[split]
             x_num = np.concatenate([x_num, self.x_num[split]]) if x_num is not None else self.x_num[split]
             y = np.concatenate([y, self.y[split]]) if y is not None else self.y[split] # maybe expand_dims?
         return x_cat, x_num, y
@@ -381,7 +383,8 @@ class TabularDataController:
             Original target variable.
         """
         x_num=safe_convert(x_num, np.float64)
-        x_cat=safe_convert(x_cat, np.int64)
+        # Don't force convert x_cat to int64 - preserve original dtype (e.g., strings for categorical)
+        # x_cat=safe_convert(x_cat, np.int64)
 
         x_cat, x_num, y = self.processor.inverse_transform(x_cat, x_num, y)
         x_num = safe_convert(x_num, np.float64)
@@ -474,11 +477,12 @@ class TabularDataController:
         data = {split:test[split] | val[split] | train[split] for split in ["X_num", "X_cat", "y"]}
         # data = {split: val[split] | train[split] for split in ["X_num", "X_cat", "y"]}
         
-        train_len = len(x_cat_train) if x_cat_train is not None else 0
-        val_len = len(x_cat_val) if x_cat_val is not None else 0
+        # Use y to calculate lengths since x_cat may be None for datasets without categorical features
+        train_len = len(y_train)
+        val_len = len(y_val)
         train_val_len = train_len + val_len
         data["idx"] = {"test": np.arange(
-                train_val_len, train_val_len + len(x_cat_test), dtype=np.int64
+                train_val_len, train_val_len + len(y_test), dtype=np.int64
             )}
 
         data["idx"].update({"train": np.arange(train_len, dtype=np.int64), "val": np.arange(train_len, train_len + val_len, dtype=np.int64)})

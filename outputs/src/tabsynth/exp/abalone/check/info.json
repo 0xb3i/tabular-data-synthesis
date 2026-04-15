@@ -1,0 +1,20 @@
+{
+    "task_type": "regression",
+    "name": "Abalone",
+    "id": "abalone--id",
+    "train_size": 2672,
+    "val_size": 669,
+    "test_size": 836,
+    "n_num_features": 7,
+    "n_cat_features": 1,
+    "dataset_config": {
+        "cat_columns": ["sex"],
+        "non_cat_columns": [],
+        "log_columns": [],
+        "general_columns": [],
+        "mixed_columns": {},
+        "int_columns": ["length", "diameter", "height", "whole_weight", "shucked_weight", "viscera_weight", "shell_weight"],
+        "problem_type": "regression",
+        "target_column": "rings"
+    }
+}

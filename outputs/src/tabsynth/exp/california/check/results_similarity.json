@@ -1,0 +1,12 @@
+{
+    "eval_type": "synthetic",
+    "dataset": "src/tabsynth/data/california/",
+    "sim_score": {
+        "score": 0.291546348374824,
+        "basic_score": 0.24038512186141003,
+        "corr_score": 0.33287047399620695,
+        "ml_score": 0.713179211316926,
+        "sup_score": 0.17129693469957694,
+        "pmse_score": 1.9264472094185195e-129
+    }
+}

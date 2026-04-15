@@ -1,0 +1,12 @@
+{
+    "eval_type": "synthetic",
+    "dataset": "src/tabsynth/data/abalone/",
+    "sim_score": {
+        "score": 0.11838874238768567,
+        "basic_score": 0.1888587984613166,
+        "corr_score": 0.02762503900517599,
+        "ml_score": 0.25556441028928667,
+        "sup_score": 0.11989546418264901,
+        "pmse_score": 8.929336062031324e-28
+    }
+}

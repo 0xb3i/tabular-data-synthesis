@@ -1,0 +1,12 @@
+{
+    "eval_type": "synthetic",
+    "dataset": "src/tabsynth/data/churn2/",
+    "sim_score": {
+        "score": 0.47232209948395376,
+        "basic_score": 0.44994807308278106,
+        "corr_score": 0.48911421430349666,
+        "ml_score": 0.8775687560275441,
+        "sup_score": 0.5449794540059467,
+        "pmse_score": 1.772021613664403e-49
+    }
+}

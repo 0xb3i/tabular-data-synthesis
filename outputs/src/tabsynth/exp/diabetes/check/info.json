@@ -1,0 +1,20 @@
+{
+    "task_type": "binclass",
+    "name": "Diabetes",
+    "id": "diabetes--id",
+    "train_size": 491,
+    "val_size": 123,
+    "test_size": 154,
+    "n_num_features": 8,
+    "n_cat_features": 0,
+    "dataset_config": {
+        "cat_columns": [],
+        "non_cat_columns": [],
+        "log_columns": [],
+        "general_columns": [],
+        "mixed_columns": {},
+        "int_columns": ["Pregnancies", "Glucose", "BloodPressure", "SkinThickness", "Insulin", "BMI", "DiabetesPedigreeFunction", "Age"],
+        "problem_type": "binclass",
+        "target_column": "Outcome"
+    }
+}

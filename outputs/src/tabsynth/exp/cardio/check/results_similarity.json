@@ -1,0 +1,12 @@
+{
+    "eval_type": "synthetic",
+    "dataset": "src/tabsynth/data/cardio/",
+    "sim_score": {
+        "score": 0.4487151017885317,
+        "basic_score": 0.42531105440386774,
+        "corr_score": 0.45895312964309365,
+        "ml_score": 0.8332632982414855,
+        "sup_score": 0.5260480266542114,
+        "pmse_score": 3.9588402791966275e-239
+    }
+}

@@ -13,7 +13,7 @@
 
 ### 1. 环境配置
 
-使用 `uv` 包管理器（推荐）：
+使用 `uv` 包管理器：
 
 ```bash
 # 创建虚拟环境
@@ -24,14 +24,6 @@ source .venv/bin/activate
 uv pip install table_evaluator catboost category-encoders dython icecream libzero numpy optuna pandas pyarrow rtdl scikit-learn scipy skorch tomli-w tomli tqdm imbalanced-learn rdt torch
 uv pip install "setuptools<70"
 uv pip install -e . --no-deps
-```
-
-或使用 conda（传统方式）：
-
-```bash
-conda env create -f environment.yml
-conda activate tabsynth
-pip install -e .
 ```
 
 ### 2. 下载数据集
@@ -53,7 +45,7 @@ python src/tabsynth/scripts/pipeline.py \
     --train --sample --eval
 ```
 
-或使用便捷脚本：
+或使用脚本：
 
 ```bash
 ./run_dataset.sh adult --train --sample --eval
@@ -162,6 +154,51 @@ python src/tabsynth/scripts/pipeline.py \
 
 详细配置说明请参考 `docs/setup-guide.md`。
 
+## Debug 模式 vs 完整训练模式
+
+系统支持两种运行模式，方便开发和调试：
+
+### 模式对比
+
+| 模式 | 扩散步数 | 训练步数 | 设备 | 采样数量 | 适用场景 |
+|------|----------|----------|------|----------|----------|
+| **Debug 模式** | 10 | 2 | CPU | 10000 | 快速验证流程、调试代码 |
+| **完整训练模式** | 1000 | 5000-10000 | GPU | 原始数据量 | 正式训练、生产环境 |
+
+### 切换方式
+
+**方式一：环境变量（推荐）**
+
+```bash
+# Debug 模式（默认，本地运行）
+python src/tabsynth/scripts/pipeline.py --config src/tabsynth/exp/adult/config.toml --train --sample --eval
+
+# 完整训练模式：设置 AZUREML_RUN_ID 环境变量
+AZUREML_RUN_ID=1 python src/tabsynth/scripts/pipeline.py --config src/tabsynth/exp/adult/config.toml --train --sample --eval
+```
+
+**方式二：修改代码**
+
+编辑 `src/tabsynth/lib/variables.py`：
+
+```python
+# 强制启用完整训练模式
+RUNS_IN_CLOUD = True  # 原始：os.getenv("AZUREML_RUN_ID") is not None
+```
+
+**方式三：手动调整配置**
+
+在 `src/tabsynth/scripts/pipeline.py` 中注释掉 debug 模式的配置覆盖：
+
+```python
+# 注释以下代码块以使用配置文件中的原始参数
+# if not RUNS_IN_CLOUD:
+#     raw_config["diffusion_params"]["num_timesteps"] = 10
+#     raw_config["train"]["main"]["steps"] = 2
+#     raw_config["device"] = "cpu"
+#     raw_config['sample']['num_samples'] = 10000
+```
+
 ## 评估指标
 
 ### ML-efficacy
@@ -171,33 +208,15 @@ python src/tabsynth/scripts/pipeline.py \
 - F1-score
 - ROC-AUC
 
-### 统计相似性 (TabSynDex)
+### 统计相似性
 
 - `basic_score`: 均值/方差/中位数相似度
 - `corr_score`: 特征相关性保持
 - `ml_score`: ML-efficacy 一致性
 - `sup_score`: 分布覆盖度
 
-## 常见问题
-
-### Q: 依赖安装失败？
-
-部分依赖在 Apple Silicon 上需要特定版本，请参考 `docs/setup-guide.md` 中的详细说明。
-
-### Q: 训练时自动进入 debug 模式？
-
-本地运行时，`pipeline.py` 会自动减少训练步数以加速测试，这是正常行为。正式训练请修改 `RUNS_IN_CLOUD` 变量。
-
-### Q: 如何使用 GPU？
-
-修改 `config.toml` 中的 `device = "cuda:0"`。
-
 ## 参考文献
 
 - [TabDDPM: Modelling Tabular Data with Diffusion Models](https://arxiv.org/abs/2209.15421)
 - [CTAB-GAN+: Enhancing Tabular Data Synthesis](https://arxiv.org/abs/2204.00401)
 - [TabSynDex: A Universal Metric for Robust Evaluation of Synthetic Tabular Data](https://arxiv.org/abs/2207.05295)
-
-## License
-
-MIT License

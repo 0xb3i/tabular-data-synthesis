@@ -99,6 +99,10 @@ def main():
         device = torch.device(raw_config['device'])
     else:
         device = torch.device('cuda:1')
+    # Fall back to CPU if CUDA is not available
+    if device.type == 'cuda' and not torch.cuda.is_available():
+        print("CUDA not available, falling back to CPU")
+        device = torch.device('cpu')
     if RUNS_IN_CLOUD or not "outputs" in raw_config["parent_dir"]:
         raw_config["parent_dir"] = os.path.join('outputs', raw_config["parent_dir"])
     

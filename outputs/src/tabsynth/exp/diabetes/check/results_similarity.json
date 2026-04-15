@@ -1,0 +1,12 @@
+{
+    "eval_type": "synthetic",
+    "dataset": "src/tabsynth/data/diabetes/",
+    "sim_score": {
+        "score": 0.530577987447598,
+        "basic_score": 0.54388122095026,
+        "corr_score": 0.2974392378376607,
+        "ml_score": 0.7676805220413763,
+        "sup_score": 0.7499245184706572,
+        "pmse_score": 0.29396443793803595
+    }
+}

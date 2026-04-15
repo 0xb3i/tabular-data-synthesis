@@ -1,0 +1,20 @@
+{
+    "name": "Churn Modelling",
+    "id": "churn--default",
+    "task_type": "binclass",
+    "n_num_features": 7,
+    "n_cat_features": 4,
+    "train_size": 6400,
+    "val_size": 1600,
+    "test_size": 2000,
+    "dataset_config": {
+        "cat_columns": ["Geography", "Gender", "HasCrCard", "IsActiveMember"],
+        "non_cat_columns": [],
+        "log_columns": [],
+        "general_columns": [],
+        "mixed_columns": {},
+        "int_columns": ["CreditScore", "Age", "Tenure", "Balance", "NumOfProducts", "EstimatedSalary", "RowNumber"],
+        "problem_type": "binclass",
+        "target_column": "Exited"
+    }
+}
