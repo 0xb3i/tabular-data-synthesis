@@ -2,11 +2,11 @@
     "eval_type": "synthetic",
     "dataset": "src/tabsynth/data/adult/",
     "sim_score": {
-        "score": 0.4997421633174435,
-        "basic_score": 0.5785801964804316,
-        "corr_score": 0.46267006828966306,
-        "ml_score": 0.8445477664367604,
-        "sup_score": 0.6129127853803624,
-        "pmse_score": 2.4128571457048464e-205
+        "score": 0.48600384909422356,
+        "basic_score": 0.5805453971127468,
+        "corr_score": 0.3900774217561168,
+        "ml_score": 0.8128174552157077,
+        "sup_score": 0.6465789713865467,
+        "pmse_score": 1.835854298576794e-303
     }
 }

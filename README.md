@@ -13,18 +13,23 @@
 
 ### 1. 环境配置
 
-使用 `uv` 包管理器：
+使用 `uv` 包管理器（推荐）：
 
 ```bash
-# 创建虚拟环境
+# 克隆仓库
+git clone <repo-url>
+cd Diffusion-based-Tabular-Data-Synthesis
+
+# 创建虚拟环境并安装依赖（自动读取 pyproject.toml 和 uv.lock）
 uv venv --python 3.9
 source .venv/bin/activate
+uv sync
 
-# 安装依赖
-uv pip install table_evaluator catboost category-encoders dython icecream libzero numpy optuna pandas pyarrow rtdl scikit-learn scipy skorch tomli-w tomli tqdm imbalanced-learn rdt torch
-uv pip install "setuptools<70"
+# 安装项目包
 uv pip install -e . --no-deps
 ```
+
+> 💡 `uv.lock` 文件确保环境可 1:1 复刻，无需手动管理 requirements.txt
 
 ### 2. 下载数据集
 
@@ -94,7 +99,8 @@ Diffusion-based-Tabular-Data-Synthesis/
 ├── docs/                        # 文档
 │   └── setup-guide.md           # 详细配置指南
 ├── run_dataset.sh               # 便捷运行脚本
-├── requirements.txt             # 依赖列表
+├── pyproject.toml               # 项目配置和依赖定义
+├── uv.lock                      # 锁定依赖版本（可复刻环境）
 └── setup.cfg                    # 包配置
 ```
 

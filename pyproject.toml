@@ -1,13 +1,41 @@
+[project]
+name = "tabsynth"
+version = "0.1.0"
+description = "Diffusion-based Tabular Data Synthesis"
+readme = "README.md"
+requires-python = ">=3.9,<3.10"
+dependencies = [
+    "azure-core",
+    "azureml-core",
+    "table-evaluator==1.4.2",
+    "torch==1.10.1",
+    "catboost==1.0.3",
+    "category-encoders==2.3.0",
+    "dython==0.5.1",
+    "icecream==2.1.2",
+    "libzero==0.0.8",
+    "numpy==1.21.4",
+    "optuna==2.10.1",
+    "pandas==1.5.2",
+    "pyarrow==6.0.0",
+    "rtdl==0.0.9",
+    "scikit-learn==1.0.2",
+    "scipy==1.7.2",
+    "skorch==0.11.0",
+    "tomli-w==0.4.0",
+    "tomli==1.2.2",
+    "tqdm==4.62.3",
+    "imbalanced-learn==0.7.0",
+    "rdt==0.6.4",
+]
+
 [build-system]
-requires = ["setuptools>=42", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.pytest.ini_options]
 addopts = "--cov=tabsynth"
-testpaths = [
-    "tests",
-]
-
+testpaths = ["tests"]
 
 [tool.mypy]
 mypy_path = "src"
@@ -22,3 +50,6 @@ warn_return_any = true
 warn_unreachable = true
 warn_unused_configs = true
 no_implicit_reexport = true
+
+[dependency-groups]
+dev = []
