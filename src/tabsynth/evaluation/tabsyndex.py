@@ -21,7 +21,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.linear_model import Lasso, Ridge, ElasticNet, LogisticRegression
 from sklearn.preprocessing import PolynomialFeatures, MinMaxScaler, LabelEncoder
 import scipy.stats as ss
-from dython.nominal import theils_u, compute_associations, numerical_encoding
+from dython.nominal import theils_u, associations, numerical_encoding
 
 def transform_cat_cols(df, cat_cols):
   """
@@ -183,8 +183,8 @@ def tabsyndex(real_data, fake_data, cat_cols, target_col=-1, target_type='regr')
         The mean absolute percentage error.
 
     """
-    real_corr = compute_associations(real_data, nominal_columns=cat_cols, theil_u=True).astype(float)
-    fake_corr = compute_associations(fake_data, nominal_columns=cat_cols, theil_u=True).astype(float)
+    real_corr = associations(real_data, nominal_columns=cat_cols, nom_nom_assoc='theil', compute_only=True, plot=False)['corr'].astype(float)
+    fake_corr = associations(fake_data, nominal_columns=cat_cols, nom_nom_assoc='theil', compute_only=True, plot=False)['corr'].astype(float)
 
     real_log_corr = np.sign(real_corr)*np.log(abs(real_corr))
     fake_log_corr = np.sign(fake_corr)*np.log(abs(fake_corr))

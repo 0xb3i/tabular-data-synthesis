@@ -28,7 +28,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 from sklearn.decomposition import PCA
-from dython.nominal import compute_associations
+from dython.nominal import associations as _dython_associations
+
+def compute_associations(data, nominal_columns='auto', theil_u=False):
+    return _dython_associations(data, nominal_columns=nominal_columns, nom_nom_assoc='theil' if theil_u else 'cramer', compute_only=True, plot=False)['corr']
 from collections import defaultdict
 
 # in some cases, sns bins="auto" function takes forever to plot histograms for non-categorical data.
