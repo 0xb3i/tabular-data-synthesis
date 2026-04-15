@@ -20,16 +20,20 @@
 git clone <repo-url>
 cd Diffusion-based-Tabular-Data-Synthesis
 
-# 创建虚拟环境并安装依赖（自动读取 pyproject.toml 和 uv.lock）
+# 创建虚拟环境
 uv venv --python 3.9
 source .venv/bin/activate
-uv sync
 
-# 安装项目包
+# 方式一：使用 uv.lock（推荐，解析兼容版本）
+uv sync
+uv pip install -e . --no-deps
+
+# 方式二：精确复刻原环境（使用 requirements.lock）
+uv pip install -r requirements.lock
 uv pip install -e . --no-deps
 ```
 
-> 💡 `uv.lock` 文件确保环境可 1:1 复刻，无需手动管理 requirements.txt
+> 💡 `uv.lock` 确保依赖版本兼容；`requirements.lock` 精确复刻原开发环境
 
 ### 2. 下载数据集
 
@@ -100,7 +104,8 @@ Diffusion-based-Tabular-Data-Synthesis/
 │   └── setup-guide.md           # 详细配置指南
 ├── run_dataset.sh               # 便捷运行脚本
 ├── pyproject.toml               # 项目配置和依赖定义
-├── uv.lock                      # 锁定依赖版本（可复刻环境）
+├── uv.lock                      # uv 锁定依赖（兼容版本）
+├── requirements.lock            # 精确版本锁定（1:1 复刻）
 └── setup.cfg                    # 包配置
 ```
 
