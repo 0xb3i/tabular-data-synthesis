@@ -31,7 +31,6 @@ Thumbs.db
 
 # Project specific
 catboost_info/
-outputs/
 processor_state/
 *.pt
 *.npy
