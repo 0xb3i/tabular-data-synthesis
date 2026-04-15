@@ -233,10 +233,10 @@ def tabsyndex(real_data, fake_data, cat_cols, target_col=-1, target_type='regr')
           #print(estimator)
           estimator.fit(fake_x, fake_y)
 
-        r_rmse = [sk.mean_squared_error(real_y, estimator.predict(real_x), squared=False) for estimator in r_estimators]
-        r_rmse += [sk.mean_squared_error(fake_y, estimator.predict(fake_x), squared=False) for estimator in r_estimators]
-        f_rmse = [sk.mean_squared_error(real_y, estimator.predict(real_x), squared=False) for estimator in f_estimators]
-        f_rmse += [sk.mean_squared_error(fake_y, estimator.predict(fake_x), squared=False) for estimator in f_estimators]
+        r_rmse = [np.sqrt(sk.mean_squared_error(real_y, estimator.predict(real_x))) for estimator in r_estimators]
+        r_rmse += [np.sqrt(sk.mean_squared_error(fake_y, estimator.predict(fake_x))) for estimator in r_estimators]
+        f_rmse = [np.sqrt(sk.mean_squared_error(real_y, estimator.predict(real_x))) for estimator in f_estimators]
+        f_rmse += [np.sqrt(sk.mean_squared_error(fake_y, estimator.predict(fake_x))) for estimator in f_estimators]
 
         score = np.sum(np.clip(mape(np.array(r_rmse), np.array(f_rmse)), 0, 1))
 

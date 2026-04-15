@@ -1,44 +1,62 @@
-.DS_Store
-.pytest_cache/
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+*.egg
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
 catboost_info/
-**/**.pt
-!*.ipynb
-**/**.npy
-**/**.gz
-**/**.sh
-**/**.obj
-**/**.png
-**/**.tar
-**/**.code-workspace
-**/**.csv
-**/READY
-exp/**/**/results_catboost.json
-exp/**/**/results_mlp.json
-exp/**/**/*log*.txt
-configs/
-src/**/data/**/info.json
-!src/**/data/adult/info.json
-*.zip
-*.pickle
-junk/
-RF/
-exps/
-*.yml
-# keep environment.yml
-!environment.yml
-!environment_azure.yml
-*.amltmp
-*.amlignore
-secrets.json
 outputs/
 processor_state/
-*aml_checkpoints/
-src/tabsynth.egg-info/
-!.github/workflows/tests.yml
-!tests/data/**/*.json
-!tests/data/**/*.npy
-!tests/data/**/*.csv
-# any egg-info directory
-*/**.egg-info/
+*.pt
+*.npy
+*.gz
+*.tar
+*.zip
+*.pickle
 
+# Data files (download separately)
+src/tabsynth/data/*/
+
+# Logs
+*.log
+
+# Secrets
+secrets.json
+.env
+
+# Temporary
+*.tmp
+*.temp
+junk/
+
+# Local tool configs
+.claude/
+.ttadk/
+.mcp.json
+uv.lock
